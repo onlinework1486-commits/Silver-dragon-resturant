@@ -1,124 +1,44 @@
-/* General Styles */
+/* General Body Background */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #111;
+    background: url('images/bg-pattern.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #f0f0f0;
 }
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-header {
-    background: #000;
-    color: #ffd700;
-    text-align: center;
-    padding: 40px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-}
-header h1 {
-    margin: 0;
-    font-size: 3rem;
-    letter-spacing: 2px;
-}
-header p {
-    font-size: 1.2rem;
-    color: #ffa500;
+
+/* Overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); /* dark overlay */
+    z-index: -1;
 }
 
-nav {
-    background-color: #222;
-}
-nav .container {
-    display: flex;
-    justify-content: center;
-}
-nav a {
-    color: #f0f0f0;
-    text-decoration: none;
-    padding: 15px 25px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-nav a.active, nav a:hover {
-    background-color: #ffd700;
-    color: #111;
-    border-radius: 5px;
-}
-
-/* Hero / Map */
+/* Header Hero Section Background */
 .hero {
     text-align: center;
-}
-.hero iframe {
-    width: 100%;
-    height: 400px;
+    background: url('images/hero-food.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 80px 20px;
     border-radius: 12px;
-    margin-top: 20px;
+    color: #ffd700;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
 }
 
-/* Menu Cards */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
+/* Cards for menu with subtle background image */
 .menu-card {
-    background-color: #1a1a1a;
+    background: rgba(26,26,26,0.85);
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(255,215,0,0.2);
     transition: transform 0.3s, box-shadow 0.3s;
-}
-.menu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255,215,0,0.4);
-}
-.menu-card h4 {
-    margin-top: 0;
-    color: #ffd700;
-}
-.menu-card p {
-    color: #f0f0f0;
-}
-
-/* Form */
-form input, form textarea, form button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-}
-form input, form textarea {
-    background-color: #222;
-    color: #f0f0f0;
-}
-form input::placeholder, form textarea::placeholder {
-    color: #aaa;
-}
-form button {
-    background-color: #ffd700;
-    color: #111;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-form button:hover {
-    background-color: #e5c100;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    background-color: #000;
-    color: #ffd700;
-    padding: 25px;
-    margin-top: 50px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    background-image: url('images/menu-card-bg.jpg'); 
+    background-size: cover;
+    background-position: center;
 }
