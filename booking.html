@@ -3,35 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silver Dragon Restaurant - Table Booking</title>
+    <title>Silver Dragon Restaurant - Book Table</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-    <h1>Silver Dragon Restaurant</h1>
+    <div class="container">
+        <h1>Silver Dragon</h1>
+    </div>
 </header>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="about.html">About</a>
-    <a href="booking.html">Table Booking</a>
+    <div class="container">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="booking.html" class="active">Book Table</a>
+    </div>
 </nav>
 
-<section id="booking">
-    <h2>Book a Table</h2>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="tel" name="phone" placeholder="Phone Number" required>
-        <input type="datetime-local" name="date" required>
-        <textarea name="notes" placeholder="Additional Notes"></textarea>
-        <button type="submit">Book Now</button>
-        <p>If you don’t understand, call us at <strong>0301 7864478</strong></p>
-    </form>
-</section>
+<main class="container">
+    <section>
+        <h2>Book a Table</h2>
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <input type="date" name="date" required>
+            <input type="time" name="time" required>
+            <input type="number" name="guests" placeholder="Number of Guests" required>
+            <textarea name="request" placeholder="Special Requests"></textarea>
+            <button type="submit">Book Now</button>
+            <p>If you don’t understand, call us at <strong>0301 7864478</strong></p>
+        </form>
+    </section>
+</main>
 
 <footer>
-    <p>&copy; 2026 Silver Dragon Restaurant. All rights reserved.</p>
+    <p>&copy; 2026 Silver Dragon Restaurant. All Rights Reserved.</p>
 </footer>
 </body>
 </html>
