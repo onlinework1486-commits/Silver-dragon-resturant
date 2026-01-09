@@ -1,45 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Silver Dragon Restaurant - Book Table</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Book Table – Silver Dragon</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="container">
-    <h1>Silver Dragon</h1>
-  </div>
-</header>
+
+<header><h1>Book a Table</h1></header>
 
 <nav>
-  <div class="container">
+  <div class="nav-wrap">
     <a href="index.html">Home</a>
     <a href="menu.html">Menu</a>
     <a href="about.html">About</a>
-    <a href="booking.html" class="active">Book Table</a>
+    <a class="active" href="booking.html">Book Table</a>
   </div>
 </nav>
 
-<main class="container">
-  <section>
-    <h2>Book a Table</h2>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <input type="text" name="name" placeholder="Full Name" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
-      <input type="date" name="date" required>
-      <input type="time" name="time" required>
-      <input type="number" name="guests" placeholder="Number of Guests" required>
-      <textarea name="request" placeholder="Special Requests"></textarea>
-      <button type="submit">Book Now</button>
-      <p>If you don’t understand, call us at <strong>0301 7864478</strong></p>
-    </form>
-  </section>
-</main>
+<div class="container">
+<form>
+    <input type="text" placeholder="Full Name" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <input type="date" required>
+    <input type="time" required>
+    <input type="number" placeholder="Number of Guests" required>
+    <textarea placeholder="Special Requests"></textarea>
+    <button>Reserve Table</button>
+    <p>If you don’t understand, call <strong>0301 7864478</strong></p>
+</form>
+</div>
 
-<footer>
-  <p>&copy; 2026 Silver Dragon Restaurant. All Rights Reserved.</p>
-</footer>
+<footer>© 2026 Silver Dragon Restaurant</footer>
 </body>
 </html>
