@@ -1,36 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Book Table – Silver Dragon</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Table | Le Pichet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Inter:wght@400;600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        h1 { font-family: 'Playfair Display', serif; }
+        
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
-<body>
+<body class="bg-stone-50 text-stone-900">
 
-<header><h1>Book a Table</h1></header>
+    <div class="min-h-screen flex flex-col items-center justify-center p-6">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold italic mb-2">Le Pichet</h1>
+            <p class="text-stone-500 tracking-widest uppercase text-sm">Table Reservation</p>
+        </div>
 
-<nav>
-  <div class="nav-wrap">
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="about.html">About</a>
-    <a class="active" href="booking.html">Book Table</a>
-  </div>
-</nav>
+        <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md border border-stone-100">
+            <form id="bookingForm">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase mb-1">Full Name</label>
+                        <input type="text" name="name" required class="w-full p-3 bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-400 transition">
+                    </div>
 
-<div class="container">
-<form>
-    <input type="text" placeholder="Full Name" required>
-    <input type="tel" placeholder="Phone Number" required>
-    <input type="date" required>
-    <input type="time" required>
-    <input type="number" placeholder="Number of Guests" required>
-    <textarea placeholder="Special Requests"></textarea>
-    <button>Reserve Table</button>
-    <p>If you don’t understand, call <strong>0301 7864478</strong></p>
-</form>
-</div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase mb-1">Phone Number</label>
+                        <input type="tel" name="phone" required class="w-full p-3 bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-400 transition">
+                    </div>
 
-<footer>© 2026 Silver Dragon Restaurant</footer>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase mb-1">Date</label>
+                            <input type="date" name="date" required class="w-full p-3 bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-400 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase mb-1">Guests</label>
+                            <select name="guests" class="w-full p-3 bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-400 transition">
+                                <option>1 Guest</option>
+                                <option selected>2 Guests</option>
+                                <option>3 Guests</option>
+                                <option>4 Guests</option>
+                                <option>5+ Guests</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase mb-1">Special Notes</label>
+                        <textarea name="notes" rows="2" class="w-full p-3 bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-400 transition" placeholder="Allergies, birthday, etc."></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-stone-900 text-white py-4 rounded-md font-bold uppercase tracking-widest hover:bg-stone-800 transition shadow-lg active:scale-95">
+                        Confirm Reservation
+                    </button>
+                </div>
+            </form>
+
+            <div id="statusBox" class="mt-6 text-center hidden">
+                <p id="statusMsg" class="text-sm font-medium"></p>
+            </div>
+        </div>
+        
+        <p class="mt-8 text-stone-400 text-xs">© 2026 Le Pichet | Built by [Your Name]</p>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzsOkGMIiCmZKZcvxYGdebG01xFgcr-SuwXz2-rAJT9Fx1W6R2_GdslO6PoWp83Rd9Z/exec';
+        const form = document.getElementById('bookingForm');
+        const btn = document.getElementById('submitBtn');
+        const statusBox = document.getElementById('statusBox');
+        const statusMsg = document.getElementById('statusMsg');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // UI Updates
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loader"></span> Processing...';
+            statusBox.classList.remove('hidden');
+            statusMsg.innerHTML = "Sending your request to the restaurant...";
+            statusMsg.className = "text-sm font-medium text-stone-500";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    console.log('Success!', response);
+                    statusMsg.innerHTML = "✓ Reservation Received! We'll see you soon.";
+                    statusMsg.className = "text-sm font-medium text-green-600";
+                    btn.innerHTML = "Success!";
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    statusMsg.innerHTML = "⚠️ Network error. Please check your script permissions.";
+                    statusMsg.className = "text-sm font-medium text-red-600";
+                    btn.disabled = false;
+                    btn.innerHTML = "Try Again";
+                });
+        });
+    </script>
 </body>
 </html>
